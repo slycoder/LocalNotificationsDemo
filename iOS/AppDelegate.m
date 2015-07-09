@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 #import "RCTRootView.h"
+#import "../../Libraries/PushNotificationIOS/RCTPushNotificationManager.h"
 
 @implementation AppDelegate
 
@@ -45,6 +46,10 @@
 
 //   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
+  [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+  [[UIApplication sharedApplication] registerForRemoteNotifications];
+  
+  
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"LocalNotificationsDemo"
                                                    launchOptions:launchOptions];
@@ -56,5 +61,12 @@
   [self.window makeKeyAndVisible];
   return YES;
 }
+
+- (void)application:(UIApplication *)application
+didReceiveLocalNotification:(NSDictionary *)userInfo
+{
+  [RCTPushNotificationManager application:application didReceiveLocalNotification:userInfo];
+}
+
 
 @end

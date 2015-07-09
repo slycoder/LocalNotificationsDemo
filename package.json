@@ -6,6 +6,6 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "react-native": "^0.6.0"
+    "react-native": "git://github.com/slycoder/react-native.git#localpushevents"
   }
 }
